@@ -1,40 +1,40 @@
 jQuery(document).ready(function ($) {
-  const $preview = $(".bee_z-10"); // the preview container
+  const $preview = $(".z-10"); // the preview container
   const $goalsList = $("#bee-goals-list");
 
   // Tab switching logic
-  const tabBtns = document.querySelectorAll(".bee_tab-btn");
-  const tabPanes = document.querySelectorAll(".bee_tab-pane");
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  const tabPanes = document.querySelectorAll(".tab-pane");
 
   tabBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       tabBtns.forEach((b) => {
-        b.classList.remove("bee_bg-secondary", "bee_text-secondary-foreground");
-        b.classList.add("bee_text-muted-foreground");
+        b.classList.remove("bg-gray-100", "text-gray-900");
+        b.classList.add("text-gray-500");
       });
-      btn.classList.add("bee_bg-secondary", "bee_text-secondary-foreground");
-      btn.classList.remove("bee_text-muted-foreground");
+      btn.classList.add("bg-gray-100", "text-gray-900");
+      btn.classList.remove("text-gray-500");
 
       tabPanes.forEach((p) => {
-        p.classList.add("bee_hidden");
-        p.classList.remove("bee_block");
+        p.classList.add("hidden");
+        p.classList.remove("block");
       });
       const target = btn.getAttribute("data-target");
-      document.getElementById(target).classList.remove("bee_hidden");
-      document.getElementById(target).classList.add("bee_block");
+      document.getElementById(target).classList.remove("hidden");
+      document.getElementById(target).classList.add("block");
     });
   });
 
   function updatePreviewColors(color) {
     document.querySelectorAll('[style*="background-color"]').forEach((el) => {
-      if (el.closest(".bee_relative.bee_z-10")) {
-        if (el.classList.contains("bee_bg-primary")) {
+      if (el.closest(".relative.z-10")) {
+        if (el.classList.contains("bg-gray-900")) {
           el.style.backgroundColor = color;
         }
       }
     });
     document.querySelectorAll('[style*="color:"]').forEach((el) => {
-      if (el.classList.contains("bee_text-primary")) {
+      if (el.classList.contains("text-gray-900")) {
         el.style.color = color;
       }
     });
@@ -73,19 +73,19 @@ jQuery(document).ready(function ($) {
     } else {
       // Create fresh if empty
       const html = `
-      <div class="bee-goal-item bee_rounded-lg bee_border bee_border-border bee_bg-card bee_p-4 bee_shadow-sm bee_relative bee_group">
-          <button class="bee-remove-goal bee_absolute bee_-top-2 bee_-right-2 bee_rounded-full bee_bg-destructive bee_text-destructive-foreground bee_w-6 bee_h-6 bee_flex bee_items-center bee_justify-center bee_opacity-0 group-hover:bee_opacity-100 bee_transition-opacity bee_shadow-sm">
-              <span class="dashicons dashicons-no-alt bee_text-sm"></span>
+      <div class="bee-goal-item rounded-lg border border-gray-200 bg-white p-4 shadow-sm relative group">
+          <button class="bee-remove-goal absolute -top-2 -right-2 rounded-full bg-red-500 text-white w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+              <span class="dashicons dashicons-no-alt text-sm"></span>
           </button>
-          <div class="bee_grid bee_gap-3">
-              <div class="bee_grid bee_grid-cols-2 bee_gap-3">
-                  <div class="bee_space-y-1.5">
-                      <label class="bee_text-xs bee_text-muted-foreground">Threshold</label>
-                      <input type="number" value="" class="bee-goal-threshold bee_flex bee_h-9 bee_w-full bee_rounded-md bee_border bee_border-input bee_bg-transparent bee_px-3 bee_py-1 bee_text-sm bee_shadow-sm bee_transition-colors focus-visible:bee_outline-none focus-visible:bee_ring-1 focus-visible:bee_ring-ring">
+          <div class="grid gap-3">
+              <div class="grid grid-cols-2 gap-3">
+                  <div class="space-y-1.5">
+                      <label class="text-xs text-gray-500">Threshold</label>
+                      <input type="number" value="" class="bee-goal-threshold flex h-9 w-full rounded-md border border-gray-300 bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
                   </div>
-                  <div class="bee_space-y-1.5">
-                      <label class="bee_text-xs bee_text-muted-foreground">Icon</label>
-                      <select class="bee-icon-select bee_flex bee_h-9 bee_w-full bee_items-center bee_justify-between bee_rounded-md bee_border bee_border-input bee_bg-transparent bee_px-3 bee_py-1 bee_text-sm bee_shadow-sm bee_ring-offset-background focus:bee_outline-none focus:bee_ring-1 focus:bee_ring-ring">
+                  <div class="space-y-1.5">
+                      <label class="text-xs text-gray-500">Icon</label>
+                      <select class="bee-icon-select flex h-9 w-full items-center justify-between rounded-md border border-gray-300 bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-white focus:outline-none focus:ring-1 focus:ring-ring">
                           <option value="truck">Truck</option>
                           <option value="tag">Tag</option>
                           <option value="gift">Gift</option>
@@ -96,9 +96,9 @@ jQuery(document).ready(function ($) {
                       </select>
                   </div>
               </div>
-              <div class="bee_space-y-1.5">
-                  <label class="bee_text-xs bee_text-muted-foreground">Reward Label</label>
-                  <input type="text" value="" class="bee-goal-label bee_flex bee_h-9 bee_w-full bee_rounded-md bee_border bee_border-input bee_bg-transparent bee_px-3 bee_py-1 bee_text-sm bee_shadow-sm bee_transition-colors focus-visible:bee_outline-none focus-visible:bee_ring-1 focus-visible:bee_ring-ring">
+              <div class="space-y-1.5">
+                  <label class="text-xs text-gray-500">Reward Label</label>
+                  <input type="text" value="" class="bee-goal-label flex h-9 w-full rounded-md border border-gray-300 bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
               </div>
           </div>
       </div>`;
