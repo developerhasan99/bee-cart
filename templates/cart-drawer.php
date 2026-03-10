@@ -3,12 +3,17 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-$heading = get_theme_mod('bee_cart_heading', 'Your Cart');
-$enable_countdown = get_theme_mod('bee_cart_countdown_enable', true);
-$countdown_minutes = get_theme_mod('bee_cart_countdown_minutes', 15);
-$countdown_msg = get_theme_mod('bee_cart_countdown_msg', 'Your cart is reserved for [timer] minutes!');
+$settings = get_option('bee_cart_settings', array());
 
-$announcement = get_theme_mod('bee_cart_announcement_msg', 'Save 20% on all items today!');
+$heading = $settings['cart_title'] ?? 'Your Cart';
+$enable_countdown = $settings['enable_timer'] ?? false;
+$countdown_minutes = $settings['timer_duration'] ?? 15;
+// Using a fixed message for now as we don't have a specific msg input in the builder yet, 
+// but we can add it later if needed.
+$countdown_msg = 'Your cart is reserved for [timer] minutes!';
+
+$show_announcement = $settings['show_announcement'] ?? false;
+$announcement = $settings['announcement_text'] ?? '';
 ?>
 <div x-data="beeCart(<?php echo esc_attr($countdown_minutes); ?>)"
     @added_to_cart.window="openCart()"
@@ -23,20 +28,9 @@ $announcement = get_theme_mod('bee_cart_announcement_msg', 'Save 20% on all item
                 <button class="bee-cart-close" @click="closeCart()" aria-label="Close cart">&times;</button>
             </div>
 
-            <?php if (!empty($announcement)) : ?>
-                <div class="bee-cart-announcement">
-                    <?php echo esc_html($announcement); ?>
-                </div>
-            <?php endif; ?>
 
-            <?php if ($enable_countdown) : ?>
-                <div class="bee-cart-countdown" id="bee-cart-countdown-wrap" x-show="timerCount > 0">
-                    <?php
-                    $timerHtml = '<span class="bee-cart-timer" x-text="formatTime(timerCount)"></span>';
-                    echo str_replace('[timer]', $timerHtml, esc_html($countdown_msg));
-                    ?>
-                </div>
-            <?php endif; ?>
+
+
         </div>
 
         <div class="bee-cart-body-wrap" id="bee-cart-content" :class="{'is-loading': isLoading}">

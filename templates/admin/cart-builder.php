@@ -8,6 +8,12 @@ $settings = get_option('bee_cart_settings', array(
     'primary_color' => '#000000',
     'enable_coupon' => true,
     'enable_badges' => true,
+    'show_rewards_on_empty' => true,
+    'rewards_bar_bg' => '#E2E2E2',
+    'rewards_bar_fg' => '#93D3FF',
+    'rewards_complete_icon_color' => '#4D4949',
+    'rewards_incomplete_icon_color' => '#4D4949',
+    'rewards_completed_text' => '🎉 Congratulations! You have unlocked all rewards.',
     // Design Defaults
     'inherit_fonts' => true,
     'show_strikethrough' => true,
@@ -32,9 +38,12 @@ $settings = get_option('bee_cart_settings', array(
     'show_close_icon' => true,
     // Announcement Settings
     'show_announcement' => false,
-    'announcement_text' => 'Free shipping on orders over $50!',
+    'announcement_text' => 'Your products are reserved for {timer}!',
     'announcement_bg' => '#000000',
     'announcement_text_color' => '#ffffff',
+    'announcement_font_size' => '13px',
+    'enable_timer' => false,
+    'timer_duration' => '0',
     // Cart Item Settings
     'show_item_images' => true,
     'show_item_total' => true,

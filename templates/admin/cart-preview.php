@@ -18,10 +18,19 @@
     <div class="flex-1 overflow-y-auto p-6 space-y-6">
         <!-- Announcement Bar -->
         <?php if ($settings['show_announcement'] ?? false) : ?>
-            <div class="mb-4 p-3 text-center text-xs font-medium rounded-lg"
+            <div class="mb-4 p-3 text-center font-medium rounded-lg"
                 style="background-color: <?php echo esc_attr($settings['announcement_bg'] ?? '#000000'); ?>; 
-                        color: <?php echo esc_attr($settings['announcement_text_color'] ?? '#ffffff'); ?>;">
+                        color: <?php echo esc_attr($settings['announcement_text_color'] ?? '#ffffff'); ?>;
+                        font-size: <?php echo esc_attr($settings['announcement_font_size'] ?? '13px'); ?>;">
                 <?php echo esc_html($settings['announcement_text'] ?? 'Free shipping on orders over $50!'); ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- Cart Countdown Timer -->
+        <?php if ($settings['enable_timer'] ?? false) : ?>
+            <div class="mb-4 p-3 text-center text-sm font-bold bg-amber-50 border border-solid border-amber-200 text-amber-800 rounded-lg flex items-center justify-center gap-2">
+                <span class="dashicons dashicons-clock"></span>
+                <span>Cart reserved for <span class="text-lg"><?php echo esc_html($settings['timer_duration'] ?? '15'); ?>:00</span> minutes!</span>
             </div>
         <?php endif; ?>
 
@@ -31,8 +40,8 @@
                 You are <span class="font-bold">$45.00</span> away from <strong style="color: <?php echo esc_attr($settings['btn_color'] ?? '#000000'); ?>">Free Shipping</strong>
             </div>
 
-            <div class="relative h-2 bg-gray-200 rounded-full overflow-visible">
-                <div class="absolute top-0 left-0 h-full rounded-full transition-all duration-500" style="width: 45%; background-color: <?php echo esc_attr($settings['btn_color'] ?? '#000000'); ?>;"></div>
+            <div class="relative h-2 rounded-full overflow-visible" style="background-color: <?php echo esc_attr($settings['rewards_bar_bg'] ?? '#E2E2E2'); ?>;">
+                <div class="absolute top-0 left-0 h-full rounded-full transition-all duration-500" style="width: 45%; background-color: <?php echo esc_attr($settings['rewards_bar_fg'] ?? '#93D3FF'); ?>;"></div>
 
                 <!-- Dynamic Checkpoints -->
                 <div id="bee-preview-checkpoints" class="absolute inset-0 pointer-events-none">
@@ -45,9 +54,11 @@
                     }
                     foreach ($goals as $goal) :
                         $left = ((float)$goal['threshold'] / $max_threshold) * 100;
+                        $is_reached = $left <= 45; // Fixed 45% for preview
+                        $icon_color = $is_reached ? ($settings['rewards_complete_icon_color'] ?? '#4D4949') : ($settings['rewards_incomplete_icon_color'] ?? '#4D4949');
                     ?>
                         <div class="absolute top-1/2 -translate-y-1/2 text-white rounded-full p-1 flex items-center justify-center shadow-md border-2 border-solid border-white group/checkpoint"
-                            style="left: <?php echo $left; ?>%; width: 24px; height: 24px; transform: translate(-50%, -50%); background-color: <?php echo esc_attr($settings['btn_color'] ?? '#000000'); ?>;">
+                            style="left: <?php echo $left; ?>%; width: 24px; height: 24px; transform: translate(-50%, -50%); background-color: <?php echo esc_attr($icon_color); ?>;">
                             <span class="dashicons dashicons-<?php echo esc_attr($goal['icon'] ?? 'truck'); ?> text-[12px] leading-none"></span>
 
                             <!-- Simple tooltip for preview -->

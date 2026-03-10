@@ -52,10 +52,12 @@ $p_color = !empty($settings['primary_color']) ? $settings['primary_color'] : '#0
 
 <style>
     :root {
-        --bee-cart-progress-fill: <?php echo esc_attr($p_color); ?>;
-        --bee-cart-progress-bg: #f1f5f9;
+        --bee-cart-progress-fill: <?php echo esc_attr($settings['rewards_bar_fg'] ?? $p_color); ?>;
+        --bee-cart-progress-bg: <?php echo esc_attr($settings['rewards_bar_bg'] ?? '#E2E2E2'); ?>;
         --bee-cart-primary: <?php echo esc_attr($p_color); ?>;
         --bee-cart-text-mut: #64748b;
+        --bee-cart-icon-complete: <?php echo esc_attr($settings['rewards_complete_icon_color'] ?? '#4D4949'); ?>;
+        --bee-cart-icon-incomplete: <?php echo esc_attr($settings['rewards_incomplete_icon_color'] ?? '#4D4949'); ?>;
     }
 
     .bee-cart-btn-primary {
@@ -68,17 +70,49 @@ $p_color = !empty($settings['primary_color']) ? $settings['primary_color'] : '#0
         background-color: <?php echo esc_attr($settings['btn_hover_color'] ?? '#333333'); ?> !important;
         color: <?php echo esc_attr($settings['btn_hover_text_color'] ?? '#e9e9e9'); ?> !important;
     }
+
+    .bee-cart-announcement {
+        background-color: <?php echo esc_attr($settings['announcement_bg'] ?? '#000000'); ?>;
+        color: <?php echo esc_attr($settings['announcement_text_color'] ?? '#ffffff'); ?>;
+        font-size: <?php echo esc_attr($settings['announcement_font_size'] ?? '13px'); ?>;
+        padding: 12px;
+        text-align: center;
+        font-weight: 500;
+        margin-top: 15px;
+        border-radius: 8px;
+    }
+
+    .bee-cart-countdown {
+        background-color: #fffbeb;
+        border: 1px solid #fde68a;
+        color: #92400e;
+        padding: 10px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        margin-top: 15px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .bee-cart-timer {
+        font-size: 16px;
+        color: #b45309;
+    }
 </style>
 
-<?php if (!$is_empty): ?>
+<?php if (!$is_empty || ($settings['show_rewards_on_empty'] ?? true)): ?>
     <!-- Progress Bar Section -->
     <?php if (!empty($goals)): ?>
         <div class="bee-cart-progress-container">
             <div class="bee-cart-progress-message">
                 <?php if ($next_goal): ?>
-                    You're only <strong><?php echo $settings['progress_type'] === 'subtotal' ? wc_price((float)$next_goal['threshold'] - $current_val) : (int)((float)$next_goal['threshold'] - $current_val) . ' items'; ?></strong> away from <strong><?php echo esc_html($next_goal['label']); ?></strong>
+                    You're only <strong><?php echo ($settings['progress_type'] ?? 'subtotal') === 'subtotal' ? wc_price((float)$next_goal['threshold'] - $current_val) : (int)((float)$next_goal['threshold'] - $current_val) . ' items'; ?></strong> away from <strong><?php echo esc_html($next_goal['label']); ?></strong>
                 <?php else: ?>
-                    🎉 Congratulations! You have unlocked all rewards.
+                    <?php echo esc_html($settings['rewards_completed_text'] ?? '🎉 Congratulations! You have unlocked all rewards.'); ?>
                 <?php endif; ?>
             </div>
             <div class="bee-cart-progress-bar">
@@ -86,13 +120,13 @@ $p_color = !empty($settings['primary_color']) ? $settings['primary_color'] : '#0
                 <div class="bee-progress-checkpoints">
                     <?php foreach ($goals as $goal):
                         $goal_val = (float)$goal['threshold'];
-                        $is_reached = $current_val >= $goal_val;
+                        $reached = $current_val >= $goal_val;
                         $pos = ($goal_val / $max_threshold) * 100;
                         $icon_key = $goal['icon'] ?? 'star';
                         $icon_svg = $icons_map[$icon_key] ?? $icons_map['star'];
                     ?>
-                        <div class="bee-checkpoint-point <?php echo $is_reached ? 'is-reached' : ''; ?>" style="left: <?php echo esc_attr($pos); ?>%;">
-                            <div class="bee-checkpoint-icon">
+                        <div class="bee-checkpoint-point <?php echo $reached ? 'is-reached' : ''; ?>" style="left: <?php echo esc_attr($pos); ?>%;">
+                            <div class="bee-checkpoint-icon" style="background-color: <?php echo $reached ? 'var(--bee-cart-icon-complete)' : 'var(--bee-cart-icon-incomplete)'; ?>; border-color: <?php echo $reached ? 'var(--bee-cart-icon-complete)' : 'var(--bee-cart-progress-bg)'; ?>;">
                                 <?php echo $icon_svg; ?>
                             </div>
                             <span class="bee-checkpoint-label"><?php echo esc_html($goal['label']); ?></span>
@@ -103,6 +137,9 @@ $p_color = !empty($settings['primary_color']) ? $settings['primary_color'] : '#0
         </div>
     <?php endif; ?>
 
+<?php endif; ?>
+
+<?php if (!$is_empty): ?>
     <div class="bee-cart-items-list">
         <?php foreach ($cart->get_cart() as $cart_item_key => $cart_item):
             $_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);

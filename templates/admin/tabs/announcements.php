@@ -1,5 +1,5 @@
 <div x-show="$store.admin.activeTab === 'announcements'" class="tab-pane p-6" style="display: none;">
-    <h2 class="text-lg font-semibold mb-6 flex items-center gap-2"><span class="dashicons dashicons-megaphone"></span> Announcements</h2>
+    <h2 class="text-lg font-semibold mt-0 mb-6 flex items-center gap-2"><span class="dashicons dashicons-megaphone"></span> Announcements</h2>
     <p class="text-sm text-gray-500 mb-6">Set up global announcements for your cart. This will appear right above your cart progress bar.</p>
 
     <div class="space-y-8">
@@ -9,9 +9,21 @@
         </div>
 
         <div class="space-y-2">
+            <label class="text-sm font-medium">Timer Duration (minutes)</label>
+            <input type="number" name="timer_duration" value="<?php echo esc_attr($settings['timer_duration'] ?? '0'); ?>" class="flex h-10 w-40 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors">
+        </div>
+
+        <div class="space-y-2">
             <label class="text-sm font-medium">Announcement Text</label>
-            <textarea name="announcement_text" rows="2" class="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors"><?php echo esc_textarea($settings['announcement_text'] ?? 'Free shipping on orders over $50!'); ?></textarea>
-            <p class="text-xs text-gray-500 mt-1">Accepts basic text and emojis. HTML is stripped for security.</p>
+            <textarea name="announcement_text" rows="2" class="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors"><?php echo esc_textarea($settings['announcement_text'] ?? 'Your products are reserved for {timer}!'); ?></textarea>
+            <p class="text-xs text-gray-500 mt-1">Accepts basic text and emojis. HTML is stripped for security. Use {timer} to show countdown timer</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-2">
+                <label class="text-sm font-medium">Font Size</label>
+                <input type="text" name="announcement_font_size" value="<?php echo esc_attr($settings['announcement_font_size'] ?? '13px'); ?>" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring" placeholder="e.g. 13px">
+            </div>
         </div>
 
         <div class="grid grid-cols-2 gap-x-4 gap-y-6">
