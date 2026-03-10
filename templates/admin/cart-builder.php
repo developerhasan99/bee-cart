@@ -60,7 +60,7 @@ $sidebar_sections = array(
     <!-- Header -->
     <div class="flex items-center justify-between mb-5">
         <h1 class="flex items-center gap-2 my-0">
-            <span>Cart editor</span>
+            <span>Bee Cart editor</span>
             <span class="px-2 py-0.5 rounded-full bg-white text-green-700 text-xs font-medium">Active</span>
         </h1>
         <div class="flex gap-3">

@@ -19,13 +19,25 @@
             </select>
         </div>
 
+        <div class="flex items-center space-x-2">
+            <input type="checkbox" id="auto_open_cart" name="auto_open_cart" class="peer h-4 w-4 shrink-0 rounded-sm border border-gray-900 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-gray-900 data-[state=checked]:text-white" <?php checked($settings['auto_open_cart'] ?? true); ?>>
+            <label for="auto_open_cart" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Auto open on Add to cart
+            </label>
+        </div>
+
         <div class="space-y-2">
-            <label class="text-sm font-medium">Opening Behavior</label>
-            <select name="cart_behavior" class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none">
-                <option value="click" <?php selected($settings['cart_behavior'] ?? 'click', 'click'); ?>>Open on Click</option>
-                <option value="auto" <?php selected($settings['cart_behavior'] ?? 'click', 'auto'); ?>>Open Automatically on Add to Cart</option>
+            <label class="text-sm font-medium">Show Cart icon on menu</label>
+            <?php $menus = wp_get_nav_menus(); ?>
+            <select name="menu_placement" class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none">
+                <option value="none" <?php selected($settings['menu_placement'] ?? 'none', 'none'); ?>>None</option>
+                <?php foreach ($menus as $menu) : ?>
+                    <option value="<?php echo esc_attr($menu->slug); ?>" <?php selected($settings['menu_placement'] ?? 'none', $menu->slug); ?>>
+                        <?php echo esc_html($menu->name); ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
-            <p class="text-xs text-gray-500 mt-1">Note: "Hover" and "Auto" behaviors may be overridden to "Click" on mobile devices.</p>
+            <p class="text-xs text-gray-500 mt-1">Select a menu to automatically append the cart icon.</p>
         </div>
 
         <div class="bg-blue-50 p-4 border border-blue-100 rounded-lg">

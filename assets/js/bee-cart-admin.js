@@ -1,6 +1,6 @@
 document.addEventListener("alpine:init", () => {
   Alpine.store("admin", {
-    activeTab: "design",
+    activeTab: "placement",
 
     setTab(tab) {
       this.activeTab = tab;
