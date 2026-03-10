@@ -24,7 +24,7 @@ $sidebar_sections = array(
     array(
         'title' => 'General',
         'tabs' => array(
-            array('title' => 'Integrations', 'handle' => 'integration', 'icon' => 'dashicons-admin-plugins'),
+            array('title' => 'Placement', 'handle' => 'placement', 'icon' => 'dashicons-layout'),
             array('title' => 'Design', 'handle' => 'design', 'icon' => 'dashicons-art'),
             array('title' => 'Header', 'handle' => 'header', 'icon' => 'dashicons-heading')
         )
@@ -93,7 +93,7 @@ $sidebar_sections = array(
         <!-- Settings Content (Middle Side) -->
         <div class="col-span-3 border border-solid border-gray-300 bg-white overflow-hidden rounded-lg">
 
-            <?php include BEE_CART_PATH . 'templates/admin/tabs/integration.php'; ?>
+            <?php include BEE_CART_PATH . 'templates/admin/tabs/placement.php'; ?>
             <?php include BEE_CART_PATH . 'templates/admin/tabs/design.php'; ?>
             <?php include BEE_CART_PATH . 'templates/admin/tabs/header.php'; ?>
             <?php include BEE_CART_PATH . 'templates/admin/tabs/announcements.php'; ?>
