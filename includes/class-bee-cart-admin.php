@@ -54,6 +54,7 @@ class Bee_Cart_Admin
 
         wp_enqueue_style('bee-cart-admin-style', BEE_CART_URL . 'assets/css/bee-cart-admin.css', array(), BEE_CART_VERSION);
         wp_enqueue_script('bee-cart-admin-script', BEE_CART_URL . 'assets/js/bee-cart-admin.js', array('jquery'), BEE_CART_VERSION, true);
+        wp_enqueue_script('alpine-js', 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js', array('bee-cart-admin-script'), null, true);
 
         // For the preview, we'll also need the frontend styles/scripts
         wp_enqueue_style('bee-cart-style', BEE_CART_URL . 'assets/css/bee-cart.css', array(), BEE_CART_VERSION);
