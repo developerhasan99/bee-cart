@@ -250,6 +250,10 @@
   margin-top: 1rem
 }
 
+.mb-8 {
+  margin-bottom: 2rem
+}
+
 .block {
   display: block
 }
@@ -439,6 +443,10 @@
   width: 10rem
 }
 
+.w-32 {
+  width: 8rem
+}
+
 .min-w-\[20px\] {
   min-width: 20px
 }
@@ -509,6 +517,10 @@
   grid-template-columns: repeat(4, minmax(0, 1fr))
 }
 
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr))
+}
+
 .flex-col {
   flex-direction: column
 }
@@ -563,6 +575,10 @@
 
 .gap-5 {
   gap: 1.25rem
+}
+
+.gap-6 {
+  gap: 1.5rem
 }
 
 .gap-x-4 {
@@ -1380,4 +1396,10 @@
 .data-\[state\=checked\]\:text-white[data-state=checked] {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity))
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  }
 }

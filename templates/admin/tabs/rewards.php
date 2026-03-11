@@ -2,62 +2,69 @@
     class="tab-pane p-6"
     style="display: none;">
     <h2 class="text-lg font-semibold mt-0 mb-6 flex items-center gap-2"><span class="dashicons dashicons-awards"></span> Progress Rewards</h2>
-    <div class="space-y-6">
+    <div class="space-y-8">
+        <!-- General Configuration -->
+        <div>
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">General Settings</h3>
+            <div class="space-y-4">
+                <div class="flex items-center space-x-2">
+                    <input type="checkbox" id="show_rewards_on_empty" x-model="$store.admin.settings.show_rewards_on_empty" class="peer h-4 w-4 shrink-0 rounded-sm border border-gray-900 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                    <label for="show_rewards_on_empty" class="text-sm font-medium leading-none">Show rewards on empty cart</label>
+                </div>
 
-        <div class="flex items-center space-x-2">
-            <input type="checkbox" id="show_rewards_on_empty" x-model="$store.admin.settings.show_rewards_on_empty" class="peer h-4 w-4 shrink-0 rounded-sm border border-gray-900 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
-            <label for="show_rewards_on_empty" class="text-sm font-medium leading-none">Enable Tiered Rewards</label>
-        </div>
+                <div class="space-y-2">
+                    <label class="text-sm font-medium">Progress Bar Colors</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-2" x-data="colorPicker('rewards_bar_bg')">
+                            <label class="text-xs text-gray-500">Background Color</label>
+                            <div class="flex items-center gap-2">
+                                <label class="relative cursor-pointer w-8 h-8 rounded-md border border-gray-200 shadow-sm overflow-hidden shrink-0">
+                                    <input type="color" :value="isValid ? color : '#E2E2E2'" @input="updatePicker" class="absolute -inset-2 w-[150%] h-[150%] !p-0 !m-0 !border-0 cursor-pointer">
+                                </label>
+                                <input type="text" :value="color" @input="updateInput" class="flex h-9 w-full rounded-md border border-gray-300 bg-white px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors" maxlength="7">
+                            </div>
+                        </div>
+                        <div class="space-y-2" x-data="colorPicker('rewards_bar_fg')">
+                            <label class="text-xs text-gray-500">Foreground Color</label>
+                            <div class="flex items-center gap-2">
+                                <label class="relative cursor-pointer w-8 h-8 rounded-md border border-gray-200 shadow-sm overflow-hidden shrink-0">
+                                    <input type="color" :value="isValid ? color : '#93D3FF'" @input="updatePicker" class="absolute -inset-2 w-[150%] h-[150%] !p-0 !m-0 !border-0 cursor-pointer">
+                                </label>
+                                <input type="text" :value="color" @input="updateInput" class="flex h-9 w-full rounded-md border border-gray-300 bg-white px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors" maxlength="7">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="grid grid-cols-2 gap-x-4 gap-y-6">
-            <!-- Bar BG Color -->
-            <div class="space-y-2" x-data="colorPicker('rewards_bar_bg')">
-                <label class="text-sm font-medium">Bar background color</label>
-                <div class="flex items-center gap-2">
-                    <label class="relative cursor-pointer w-10 h-10 rounded-md border border-gray-200 shadow-sm overflow-hidden shrink-0">
-                        <input type="color" :value="isValid ? color : '#000000'" @input="updatePicker" class="absolute -inset-2 w-[150%] h-[150%] !p-0 !m-0 !border-0 cursor-pointer">
-                    </label>
-                    <input type="text" :value="color" @input="updateInput" :class="!isValid ? 'border-red-500 ring-red-200' : 'border-gray-300'" class="flex h-10 w-full rounded-md border bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors" maxlength="7">
+                <div class="space-y-2">
+                    <label class="text-sm font-medium">Checkpoint Icon Colors</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-2" x-data="colorPicker('rewards_complete_icon_color')">
+                            <label class="text-xs text-gray-500">Complete Tier Color</label>
+                            <div class="flex items-center gap-2">
+                                <label class="relative cursor-pointer w-8 h-8 rounded-md border border-gray-200 shadow-sm overflow-hidden shrink-0">
+                                    <input type="color" :value="isValid ? color : '#4D4949'" @input="updatePicker" class="absolute -inset-2 w-[150%] h-[150%] !p-0 !m-0 !border-0 cursor-pointer">
+                                </label>
+                                <input type="text" :value="color" @input="updateInput" class="flex h-9 w-full rounded-md border border-gray-300 bg-white px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors" maxlength="7">
+                            </div>
+                        </div>
+                        <div class="space-y-2" x-data="colorPicker('rewards_incomplete_icon_color')">
+                            <label class="text-xs text-gray-500">Incomplete Tier Color</label>
+                            <div class="flex items-center gap-2">
+                                <label class="relative cursor-pointer w-8 h-8 rounded-md border border-gray-200 shadow-sm overflow-hidden shrink-0">
+                                    <input type="color" :value="isValid ? color : '#4D4949'" @input="updatePicker" class="absolute -inset-2 w-[150%] h-[150%] !p-0 !m-0 !border-0 cursor-pointer">
+                                </label>
+                                <input type="text" :value="color" @input="updateInput" class="flex h-9 w-full rounded-md border border-gray-300 bg-white px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors" maxlength="7">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium">Completion Message</label>
+                    <textarea x-model="$store.admin.settings.rewards_completed_text" rows="2" placeholder="Text after completing full rewards bar..." class="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors"></textarea>
                 </div>
             </div>
-
-            <!-- Bar FG Color -->
-            <div class="space-y-2" x-data="colorPicker('rewards_bar_fg')">
-                <label class="text-sm font-medium">Bar foreground color</label>
-                <div class="flex items-center gap-2">
-                    <label class="relative cursor-pointer w-10 h-10 rounded-md border border-gray-200 shadow-sm overflow-hidden shrink-0">
-                        <input type="color" :value="isValid ? color : '#000000'" @input="updatePicker" class="absolute -inset-2 w-[150%] h-[150%] !p-0 !m-0 !border-0 cursor-pointer">
-                    </label>
-                    <input type="text" :value="color" @input="updateInput" :class="!isValid ? 'border-red-500 ring-red-200' : 'border-gray-300'" class="flex h-10 w-full rounded-md border bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors" maxlength="7">
-                </div>
-            </div>
-
-            <!-- Complete Icon Color -->
-            <div class="space-y-2" x-data="colorPicker('rewards_complete_icon_color')">
-                <label class="text-sm font-medium">Complete reward tier icon color</label>
-                <div class="flex items-center gap-2">
-                    <label class="relative cursor-pointer w-10 h-10 rounded-md border border-gray-200 shadow-sm overflow-hidden shrink-0">
-                        <input type="color" :value="isValid ? color : '#000000'" @input="updatePicker" class="absolute -inset-2 w-[150%] h-[150%] !p-0 !m-0 !border-0 cursor-pointer">
-                    </label>
-                    <input type="text" :value="color" @input="updateInput" :class="!isValid ? 'border-red-500 ring-red-200' : 'border-gray-300'" class="flex h-10 w-full rounded-md border bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors" maxlength="7">
-                </div>
-            </div>
-
-            <!-- Incomplete Icon Color -->
-            <div class="space-y-2" x-data="colorPicker('rewards_incomplete_icon_color')">
-                <label class="text-sm font-medium">Incomplete reward tier icon color</label>
-                <div class="flex items-center gap-2">
-                    <label class="relative cursor-pointer w-10 h-10 rounded-md border border-gray-200 shadow-sm overflow-hidden shrink-0">
-                        <input type="color" :value="isValid ? color : '#000000'" @input="updatePicker" class="absolute -inset-2 w-[150%] h-[150%] !p-0 !m-0 !border-0 cursor-pointer">
-                    </label>
-                    <input type="text" :value="color" @input="updateInput" :class="!isValid ? 'border-red-500 ring-red-200' : 'border-gray-300'" class="flex h-10 w-full rounded-md border bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors" maxlength="7">
-                </div>
-            </div>
-        </div>
-
-        <div class="space-y-2">
-            <label class="text-sm font-medium">Text after completing full rewards bar</label>
-            <textarea x-model="$store.admin.settings.rewards_completed_text" rows="2" class="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors"></textarea>
         </div>
 
 

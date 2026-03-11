@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     <div class="space-y-2 rounded-lg bg-gray-200 flex items-center justify-center cursor-not-allowed">
-                        <div class="relative flex items-center justify-center p-2 rounded-lg"
+                        <div class="relative flex items-center justify-center p-1 rounded-lg"
                             :style="'color: ' + $store.admin.settings.cart_icon_color">
 
                             <!-- Icons -->
