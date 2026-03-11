@@ -19,11 +19,15 @@
     <!-- Side Cart Body Preview -->
     <div class="flex-1 overflow-y-auto p-6 space-y-6">
         <!-- Announcement Bar -->
-        <div x-show="$store.admin.settings.show_announcement" class="mb-4 p-3 text-center font-medium rounded-lg"
+        <div x-show="$store.admin.settings.show_announcement" class="mb-4 text-center font-medium rounded-lg"
+            :class="{
+                'p-2 text-xs': $store.admin.settings.announcement_bar_size === 'small',
+                'p-3 text-sm': $store.admin.settings.announcement_bar_size === 'medium' || !$store.admin.settings.announcement_bar_size,
+                'p-4 text-base': $store.admin.settings.announcement_bar_size === 'large'
+            }"
             :style="{
                 backgroundColor: $store.admin.settings.announcement_bg || '#000000', 
-                color: $store.admin.settings.announcement_text_color || '#ffffff',
-                fontSize: $store.admin.settings.announcement_font_size || '13px'
+                color: $store.admin.settings.announcement_text_color || '#ffffff'
             }"
             x-text="$store.admin.settings.announcement_text || 'Free shipping on orders over $50!'">
         </div>
