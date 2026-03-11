@@ -61,6 +61,12 @@
                 </div>
 
                 <div class="space-y-2">
+                    <label class="text-sm font-medium">Threshold Message (In-progress)</label>
+                    <input type="text" x-model="$store.admin.settings.trans_rewards_away" placeholder="You're only {amount} away from {goal}" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors">
+                    <p class="text-[11px] text-gray-400 mt-1">Use <strong>{amount}</strong> for remaining value and <strong>{goal}</strong> for reward label.</p>
+                </div>
+
+                <div class="space-y-2">
                     <label class="text-sm font-medium">Completion Message</label>
                     <textarea x-model="$store.admin.settings.rewards_completed_text" rows="2" placeholder="Text after completing full rewards bar..." class="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors"></textarea>
                 </div>
