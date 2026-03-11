@@ -25,52 +25,46 @@
         <!-- Display Settings Section -->
         <div>
             <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">Display Settings</h3>
-            <div class="grid grid-cols-1 gap-6">
-                <div class="space-y-2">
-                    <label for="upsell_title" class="text-sm font-medium">Section Title</label>
-                    <input type="text" id="upsell_title" x-model="$store.admin.settings.upsell_title" placeholder="You might also like..." class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
-                    <p class="text-xs text-gray-400">The title displayed above the upsell products.</p>
-                </div>
-
-                <div class="space-y-2">
-                    <label for="upsell_max" class="text-sm font-medium">Maximum Products to Show</label>
-                    <input type="number" id="upsell_max" x-model.number="$store.admin.settings.upsell_max" min="1" max="10" class="flex h-10 w-32 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
-                    <p class="text-xs text-gray-400">Limit the number of products displayed in the upsell section.</p>
-                </div>
+            <div class="space-y-2">
+                <label for="upsell_title" class="text-sm font-medium">Section Title</label>
+                <input type="text" id="upsell_title" x-model="$store.admin.settings.upsell_title" placeholder="You might also like..." class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+                <p class="text-xs text-gray-400">The title displayed above the upsell products.</p>
             </div>
         </div>
 
-        <!-- Advanced Settings Section -->
-        <div>
-            <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">Upsell Logic & Style</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                    <label for="upsell_source" class="text-sm font-medium">Recommendation Source</label>
-                    <select id="upsell_source" x-model="$store.admin.settings.upsell_source" class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
-                        <option value="random">Random Products</option>
-                        <option value="best_sellers">Best Sellers</option>
-                        <option value="newest">Newest Arrivals</option>
-                        <option value="cross_sells">WooCommerce Cross-sells</option>
-                        <option value="related">Related Products</option>
-                    </select>
-                    <p class="text-xs text-gray-400">How should we pick the products to upsell?</p>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+                <label for="upsell_source" class="text-sm font-medium">Recommendation Source</label>
+                <select id="upsell_source" x-model="$store.admin.settings.upsell_source" class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+                    <option value="random">Random Products</option>
+                    <option value="best_sellers">Best Sellers</option>
+                    <option value="newest">Newest Arrivals</option>
+                    <option value="cross_sells">WooCommerce Cross-sells</option>
+                    <option value="related">Related Products</option>
+                </select>
+                <p class="text-xs text-gray-400">How should we pick the products to upsell?</p>
+            </div>
 
-                <div class="space-y-2">
-                    <label for="upsell_layout" class="text-sm font-medium">Layout Style</label>
-                    <select id="upsell_layout" x-model="$store.admin.settings.upsell_layout" class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
-                        <option value="list">Vertical List</option>
-                        <option value="grid">Grid View</option>
-                        <option value="slider">Horizontal Slider</option>
-                    </select>
-                    <p class="text-xs text-gray-400">Choose how the upsell products are presented.</p>
-                </div>
+            <div class="space-y-2">
+                <label for="upsell_layout" class="text-sm font-medium">Layout Style</label>
+                <select id="upsell_layout" x-model="$store.admin.settings.upsell_layout" class="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+                    <option value="list">Vertical List</option>
+                    <option value="grid">Grid View</option>
+                    <option value="slider">Horizontal Slider</option>
+                </select>
+                <p class="text-xs text-gray-400">Choose how the upsell products are presented.</p>
+            </div>
 
-                <div class="space-y-2">
-                    <label for="upsell_btn_text" class="text-sm font-medium">Button Text</label>
-                    <input type="text" id="upsell_btn_text" x-model="$store.admin.settings.upsell_btn_text" placeholder="Add to Cart" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
-                    <p class="text-xs text-gray-400">The call-to-action text on the product cards.</p>
-                </div>
+            <div class="space-y-2">
+                <label for="upsell_max" class="text-sm font-medium">Maximum Products to Show</label>
+                <input type="number" id="upsell_max" x-model.number="$store.admin.settings.upsell_max" min="1" max="10" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+                <p class="text-xs text-gray-400">Limit the number of products displayed in the upsell section.</p>
+            </div>
+
+            <div class="space-y-2">
+                <label for="upsell_btn_text" class="text-sm font-medium">Button Text</label>
+                <input type="text" id="upsell_btn_text" x-model="$store.admin.settings.upsell_btn_text" placeholder="Add to Cart" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+                <p class="text-xs text-gray-400">The call-to-action text on the product cards.</p>
             </div>
         </div>
     </div>
