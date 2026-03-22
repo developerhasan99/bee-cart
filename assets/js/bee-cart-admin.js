@@ -2,6 +2,10 @@ document.addEventListener("alpine:init", () => {
   Alpine.store("admin", {
     activeTab: "placement",
     settings: {
+      enable_cart_drawer: true,
+      cart_position: "right",
+      auto_open_cart: true,
+      menu_placement: "bottom",
       progress_type: "subtotal",
       goals: [
         { threshold: 50, label: "Free Shipping", icon: "truck" },
@@ -42,6 +46,7 @@ document.addEventListener("alpine:init", () => {
       announcement_text: "Your products are reserved for {timer}!",
       announcement_bg: "#000000",
       announcement_text_color: "#ffffff",
+      announcement_font_size: "13px",
       announcement_bar_size: "medium",
       enable_timer: false,
       timer_duration: "0",
