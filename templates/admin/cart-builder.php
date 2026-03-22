@@ -20,10 +20,10 @@ $sidebar_sections = array(
     array(
         'title' => 'Footer',
         'tabs' => array(
-            array('title' => 'Add-ons', 'handle' => 'addons', 'icon' => 'dashicons-plus-alt'),
+            // array('title' => 'Add-ons', 'handle' => 'addons', 'icon' => 'dashicons-plus-alt'),
             array('title' => 'Discount codes', 'handle' => 'discount', 'icon' => 'dashicons-tickets'),
             array('title' => 'Cart summary', 'handle' => 'summary', 'icon' => 'dashicons-clipboard'),
-            array('title' => 'Express payments', 'handle' => 'express_payments', 'icon' => 'dashicons-money-alt'),
+            // array('title' => 'Express payments', 'handle' => 'express_payments', 'icon' => 'dashicons-money-alt'),
             array('title' => 'Trust badges', 'handle' => 'badges', 'icon' => 'dashicons-shield')
         )
     )
