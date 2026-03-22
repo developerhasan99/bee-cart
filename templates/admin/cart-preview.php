@@ -39,7 +39,7 @@
         </div>
 
         <!-- Progress Bar Component -->
-        <div x-show="$store.admin.settings.show_rewards_on_empty" class="rounded-lg p-4" :style="{ backgroundColor: $store.admin.settings.accent_color || '#f6f6f7' }">
+        <div x-show="$store.admin.settings.enable_rewards_bar" class="rounded-lg p-4" :style="{ backgroundColor: $store.admin.settings.accent_color || '#f6f6f7' }">
             <div class="text-sm text-center mb-3">
                 You are <span class="font-bold">$45.00</span> away from <strong :style="{ color: $store.admin.settings.btn_color || '#000000' }">Free Shipping</strong>
             </div>
@@ -69,7 +69,7 @@
         </div>
 
         <!-- Reward Completed Text -->
-        <div x-show="$store.admin.settings.show_rewards_on_empty && 100 <= 45" class="p-3 text-center text-sm font-medium rounded-lg bg-green-50 text-green-800 border border-green-200" x-text="$store.admin.settings.rewards_completed_text">
+        <div x-show="$store.admin.settings.enable_rewards_bar && 100 <= 45" class="p-3 text-center text-sm font-medium rounded-lg bg-green-50 text-green-800 border border-green-200" x-text="$store.admin.settings.rewards_completed_text">
         </div>
 
         <!-- Cart Item Example -->

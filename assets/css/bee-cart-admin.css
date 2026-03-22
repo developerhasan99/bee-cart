@@ -1167,6 +1167,10 @@
   opacity: 0.7
 }
 
+.peer:disabled ~ .peer-disabled\:opacity-50 {
+  opacity: 0.5
+}
+
 .data-\[state\=checked\]\:bg-gray-900[data-state=checked] {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity))

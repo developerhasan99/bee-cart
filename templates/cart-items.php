@@ -104,7 +104,10 @@ $p_color = !empty($settings['primary_color']) ? $settings['primary_color'] : '#0
     }
 </style>
 
-<?php if (!$is_empty || ($settings['show_rewards_on_empty'] ?? true)): ?>
+<?php 
+$enable_rewards_bar = $settings['enable_rewards_bar'] ?? true;
+if ($enable_rewards_bar && (!$is_empty || ($settings['show_rewards_on_empty'] ?? true))): 
+?>
     <!-- Progress Bar Section -->
     <?php if (!empty($goals)): ?>
         <div class="bee-cart-progress-container">

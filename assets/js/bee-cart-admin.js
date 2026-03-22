@@ -10,6 +10,7 @@ document.addEventListener("alpine:init", () => {
       primary_color: "#000000",
       enable_coupon: true,
       enable_badges: true,
+      enable_rewards_bar: true,
       show_rewards_on_empty: true,
       rewards_bar_bg: "#E2E2E2",
       rewards_bar_fg: "#93D3FF",

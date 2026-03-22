@@ -8,8 +8,13 @@
             <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">General Settings</h3>
             <div class="space-y-4">
                 <div class="flex items-center space-x-2">
-                    <input type="checkbox" id="show_rewards_on_empty" x-model="$store.admin.settings.show_rewards_on_empty" class="peer h-4 w-4 shrink-0 rounded-sm border border-gray-900 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                    <label for="show_rewards_on_empty" class="text-sm font-medium leading-none">Show rewards on empty cart</label>
+                    <input type="checkbox" id="enable_rewards_bar" x-model="$store.admin.settings.enable_rewards_bar" class="peer h-4 w-4 shrink-0 rounded-sm border border-gray-900 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                    <label for="enable_rewards_bar" class="text-sm font-medium leading-none">Enable Tiered Rewards Bar</label>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <input type="checkbox" id="show_rewards_on_empty" x-model="$store.admin.settings.show_rewards_on_empty" class="peer h-4 w-4 shrink-0 rounded-sm border border-gray-900 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" x-bind:disabled="!$store.admin.settings.enable_rewards_bar">
+                    <label for="show_rewards_on_empty" class="text-sm font-medium leading-none whitespace-nowrap peer-disabled:opacity-50 peer-disabled:cursor-not-allowed">Show rewards on empty cart</label>
                 </div>
 
                 <div class="space-y-2">
