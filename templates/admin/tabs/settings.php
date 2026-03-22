@@ -7,10 +7,7 @@
         <div>
             <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">Translations</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                    <label class="text-sm font-medium">Checkout Button</label>
-                    <input type="text" x-model="$store.admin.settings.trans_checkout_btn" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
-                </div>
+                <!-- Checkout moved to summary -->
                 <div class="space-y-2">
                     <label class="text-sm font-medium">View Cart Button</label>
                     <input type="text" x-model="$store.admin.settings.trans_view_cart_btn" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
@@ -23,14 +20,7 @@
                     <label class="text-sm font-medium">Empty Cart Message</label>
                     <input type="text" x-model="$store.admin.settings.trans_empty_cart" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
                 </div>
-                <div class="space-y-2">
-                    <label class="text-sm font-medium">Subtotal Label</label>
-                    <input type="text" x-model="$store.admin.settings.trans_subtotal" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
-                </div>
-                <div class="space-y-2">
-                    <label class="text-sm font-medium">Savings Label</label>
-                    <input type="text" x-model="$store.admin.settings.trans_savings" class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
-                </div>
+                <!-- Subtotal and savings moved to summary -->
             </div>
         </div>
 

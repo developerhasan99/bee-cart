@@ -132,7 +132,7 @@
         </div>
 
         <div x-show="$store.admin.settings.enable_subtotal_line" class="flex justify-between items-center text-sm font-medium border-0 border-b border-dashed border-gray-200 pb-2">
-            <span>Subtotal</span>
+            <span x-text="$store.admin.settings.trans_subtotal || 'Subtotal'"></span>
             <span class="font-semibold">$120.00</span>
         </div>
 
@@ -149,7 +149,7 @@
                 color: $store.admin.settings.btn_text_color || '#FFFFFF',
                 borderRadius: $store.admin.settings.btn_radius || '0px'
             }">
-            Checkout <span class="opacity-80">•</span> $120.00
+            <span x-text="$store.admin.settings.trans_checkout_btn || 'Checkout'"></span> <span class="opacity-80">•</span> $120.00
         </button>
 
         <!-- Trust Badges -->
