@@ -9,7 +9,7 @@
         <!-- Configuration Section -->
         <div>
             <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">Configuration</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-4">
                 <div class="flex items-center space-x-2">
                     <input type="checkbox" id="show_announcement" x-model="$store.admin.settings.show_announcement" class="peer h-4 w-4 shrink-0 rounded-sm border border-gray-900 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
                     <label for="show_announcement" class="text-sm font-medium leading-none">Enable Announcement Bar</label>
