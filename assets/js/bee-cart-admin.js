@@ -55,8 +55,7 @@ document.addEventListener("alpine:init", () => {
       upsell_layout: "list",
       upsell_btn_text: "Add to Cart",
       show_trust_badges: true,
-      trust_badges_title: "Secure Checkout",
-      selected_badges: ["visa", "mastercard", "paypal", "apple-pay"],
+      trust_badge_image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 40' width='300' height='40'%3E%3Crect width='300' height='40' fill='transparent' rx='4'/%3E%3Ctext x='150' y='25' font-family='sans-serif' font-size='14' font-weight='bold' fill='%239ca3af' text-anchor='middle'%3ESECURE CHECKOUT%3C/text%3E%3C/svg%3E",
       custom_css: "",
       trans_checkout_btn: "Checkout",
       trans_view_cart_btn: "View Cart",
@@ -67,9 +66,7 @@ document.addEventListener("alpine:init", () => {
       trans_coupon_placeholder: "Coupon code",
       trans_coupon_apply_btn: "Apply",
       trans_rewards_away: "You're only {amount} away from {goal}",
-      ...(Array.isArray(beeCartAdminData.settings)
-        ? {}
-        : beeCartAdminData.settings),
+      ...(Array.isArray(beeCartAdminData.settings) ? {} : beeCartAdminData.settings),
     },
     isSaving: false,
 

@@ -246,11 +246,16 @@ $p_color = !empty($settings['primary_color']) ? $settings['primary_color'] : '#0
             </div>
         <?php endif; ?>
 
-        <?php if ($settings['enable_badges'] ?? true): ?>
-            <div class="bee-cart-trust-badge">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" style="height: 16px; margin: 0 8px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" style="height: 16px; margin: 0 8px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" style="height: 16px; margin: 0 8px;">
+        <?php 
+        $show_trust_badges = $settings['show_trust_badges'] ?? ($settings['enable_badges'] ?? true);
+        $trust_badge_image = $settings['trust_badge_image'] ?? "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 40' width='300' height='40'%3E%3Crect width='300' height='40' fill='transparent' rx='4'/%3E%3Ctext x='150' y='25' font-family='sans-serif' font-size='14' font-weight='bold' fill='%239ca3af' text-anchor='middle'%3ESECURE CHECKOUT%3C/text%3E%3C/svg%3E";
+
+        if ($show_trust_badges && !empty($trust_badge_image)): 
+        ?>
+            <div class="bee-cart-trust-badge-section" style="text-align: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid #f3f4f6;">
+                <div class="bee-cart-trust-badge" style="display: flex; justify-content: center; opacity: 0.6; filter: grayscale(100%);">
+                    <img src="<?php echo esc_url($trust_badge_image); ?>" alt="Trust Badge" style="height: 24px; width: auto; max-width: 100%; object-fit: contain;">
+                </div>
             </div>
         <?php endif; ?>
 

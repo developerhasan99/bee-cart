@@ -43,6 +43,7 @@ class Bee_Cart_Admin
             return;
         }
 
+        wp_enqueue_media();
         wp_enqueue_style('bee-cart-admin-style', BEE_CART_URL . 'assets/css/bee-cart-admin.css', array(), BEE_CART_VERSION);
         wp_enqueue_script('bee-cart-admin-script', BEE_CART_URL . 'assets/js/bee-cart-admin.js', array('jquery'), BEE_CART_VERSION, true);
         wp_enqueue_script('alpine-js', 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js', array('bee-cart-admin-script'), null, true);
@@ -75,18 +76,7 @@ class Bee_Cart_Admin
             'nonce'    => wp_create_nonce('beecart-admin-nonce'),
             'settings' => $settings,
             'menus'    => $formatted_menus,
-            'icons'    => $icons,
-            'badges'   => array(
-                'visa' => 'Visa',
-                'mastercard' => 'Mastercard',
-                'amex' => 'Amex',
-                'paypal' => 'PayPal',
-                'apple-pay' => 'Apple Pay',
-                'google-pay' => 'Google Pay',
-                'stripe' => 'Stripe',
-                'shopify' => 'Shopify Pay',
-                'secure-lock' => 'SSL Secure'
-            )
+            // 'badges' array removed since we now use a single custom image uploader
         ));
     }
 

@@ -153,25 +153,10 @@
         </button>
 
         <!-- Trust Badges -->
-        <div x-show="$store.admin.settings.show_trust_badges" class="pt-4 border-t border-solid border-gray-100 text-center">
-            <span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-3" x-text="$store.admin.settings.trust_badges_title || 'Secure Checkout'"></span>
-            <div class="flex flex-wrap justify-center gap-3 opacity-60 grayscale">
-                <template x-if="($store.admin.settings.selected_badges || []).includes('visa')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Visa_2014_logo_detail.svg" class="h-4" alt="Visa">
-                </template>
-                <template x-if="($store.admin.settings.selected_badges || []).includes('mastercard')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg" class="h-4" alt="Mastercard">
-                </template>
-                <template x-if="($store.admin.settings.selected_badges || []).includes('paypal')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" class="h-4" alt="PayPal">
-                </template>
-                <template x-if="($store.admin.settings.selected_badges || []).includes('apple-pay')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Apple_Pay_logo.svg" class="h-4" alt="Apple Pay">
-                </template>
-                <template x-if="($store.admin.settings.selected_badges || []).includes('google-pay')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo_%282020%29.svg" class="h-4" alt="Google Pay">
-                </template>
-            </div>
+        <div x-show="$store.admin.settings.show_trust_badges" class="pt-4 border-t border-solid border-gray-100 text-center flex justify-center">
+            <template x-if="$store.admin.settings.trust_badge_image">
+                <img :src="$store.admin.settings.trust_badge_image" class="h-6 w-auto max-w-full opacity-60 grayscale object-contain mx-auto" alt="Trust badges">
+            </template>
         </div>
     </div>
 </div>
