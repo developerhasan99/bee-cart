@@ -5,7 +5,7 @@ if (! defined('ABSPATH')) {
 
 $cart_count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
 ?>
-<div class="bee-cart-icon-wrapper" onclick="window.dispatchEvent(new Event('open-bee-cart'))" style="position: relative; cursor: pointer; display: inline-block;">
+<div class="bee-cart-icon-wrapper" onclick="window.dispatchEvent(new CustomEvent('open-bee-cart'))" style="position: relative; cursor: pointer; display: inline-block;">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="9" cy="21" r="1"></circle>
         <circle cx="20" cy="21" r="1"></circle>

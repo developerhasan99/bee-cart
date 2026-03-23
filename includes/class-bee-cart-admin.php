@@ -44,7 +44,12 @@ class Bee_Cart_Admin
         }
 
         wp_enqueue_media();
+        // Load standard admin styles for the tab system
         wp_enqueue_style('bee-cart-admin-style', BEE_CART_URL . 'assets/css/bee-cart-admin.css', array(), BEE_CART_VERSION);
+        
+        // Ensure Vanilla drawer classes load natively inside the admin without Tailwind conflicts
+        wp_enqueue_style('bee-cart-drawer-style', BEE_CART_URL . 'assets/css/cart-drawer.css', array(), BEE_CART_VERSION);
+
         wp_enqueue_script('bee-cart-admin-script', BEE_CART_URL . 'assets/js/bee-cart-admin.js', array('jquery'), BEE_CART_VERSION, true);
         wp_enqueue_script('alpine-js', 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js', array('bee-cart-admin-script'), null, true);
 

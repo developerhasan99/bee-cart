@@ -1,4 +1,4 @@
-document.addEventListener("alpine:init", () => {
+const initBeeCartJS = () => {
   Alpine.data("beeCart", (initialMinutes = 15) => ({
     isOpen: false,
     isLoading: false,
@@ -202,4 +202,6 @@ document.addEventListener("alpine:init", () => {
       return (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
     },
   }));
-});
+};
+document.addEventListener("alpine:init", initBeeCartJS);
+if (window.Alpine) initBeeCartJS();
